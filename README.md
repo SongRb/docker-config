@@ -5,23 +5,23 @@
 The open environment to run any Spark applications.
 
 * Docker image to run in Linux/MacOS/Windows
-* Install Hadoop and Spark within one minute
+* Install Hadoop, Spark, Hive within one minute
 * Submit job to local and remote Yarn clusters
-* Repeatable examples of PySpark/Spark streaming/...
+* Repeatable examples of PySpark/Spark streaming/
+* A comfortable development toolset with ptpython/vim installed
 
 ## Usage
 
 Run the container.
 
 ```
-docker run -it --net=host -v /:/host tobegit3hub/openspark bash
+docker run -it --net=host -v /:/host songrb/openspark bash
 ```
 
 Setup the cluster.
 
 ```
-/scripts/prepare_sshd.sh
-/scripts/prepare_hadoop.sh
+/scripts/setup.sh
 ```
 
 Run the examples.
@@ -67,20 +67,8 @@ cp /host/my_hadoop_conf/* /usr/local/hadoop/etc/hadoop/
 
 ## Spark Version
 
-OpenSpark have supported multiple Spark versions and you can add more in the docker image.
+OpenSpark have supported latest Spark and Hive version:
 
-* spark-2.4.0-bin-hadoop2.7
-* spark-2.3.0-bin-hadoop2.7(default)
-* spark-1.6.3-bin-hadoop2.6
+* spark-2.3.4-bin-hadoop2.7
+* hive-2.3.6-bin-hadoop2.7
 
-We can switch the Spark version easily.
-
-```bash
-echo $SPARK_HOME
-
-mv /usr/local/spark/ /usr/local/spark_bak/
-
-mv /usr/local/spark-1.6.3-bin-hadoop2.6/ /usr/local/spark/
-
-export PATH=$PATH:$SPARK_HOME/bin
-```
