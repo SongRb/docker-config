@@ -6,7 +6,7 @@ COPY ./conf/sources.list /etc/apt/sources.list
 
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install -y software-properties-common curl wget bzip2 zip htop ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git openssh-server maven krb5-user vim iputils-ping unzip rsync pkg-config build-essential libfreetype6-dev libzmq3-dev python python-dev
+RUN apt install -y --fix-missing software-properties-common curl wget bzip2 zip htop ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git openssh-server maven krb5-user vim iputils-ping unzip rsync pkg-config build-essential libfreetype6-dev libzmq3-dev python python-dev
 
 
 # Install Java
@@ -84,7 +84,8 @@ RUN mkdir -p ~/.config/pip
 COPY ./conf/pip.conf ~/.config/pip/pip.conf
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 
-RUN pip install -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host mirrors.aliyun.com ptpython pyspark
+# RUN pip install -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host mirrors.aliyun.com ptpython pyspark
+RUN pip install -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host mirrors.aliyun.com ptpython
 RUN mkdir ~/.ptpython
 COPY ./conf/config.py  ~/.ptpython
 
